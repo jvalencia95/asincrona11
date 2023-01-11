@@ -1,0 +1,57 @@
+<section class="mt-5">
+  <h3>Validaciones</h3>
+  <section class="row mt-5">
+    <section class="col-5">
+      <div class="container">
+
+        <form [formGroup]="formLogin">
+          <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label mb-4">Nombre:</label>
+            <div class="col-8">
+              <input type="text" class="form-control" id="inputName" placeholder="Name" formControlName="nombre">
+            </div>
+
+            <section *ngIf="formLogin.get('nombre')?.touched && formLogin.get('nombre')?.errors?.['required']"
+              class="alert alert-danger">El nombre es requerido
+            </section>
+
+            <section *ngIf="formLogin.get('nombre')?.touched && formLogin.get('nombre')?.errors?.['minlength']"
+              class="alert alert-danger">El nombre debe tener minimo 10 letras
+            </section>
+          </div>
+
+          <div class="mb-3 row">
+            <label for="inputName" class="col-4 col-form-label mb-4">Email:</label>
+            <div class="col-8">
+              <input type="text" class="form-control" id="inputName" placeholder="Email" formControlName="correo">
+            </div>
+
+            <section *ngIf="formLogin.get('correo')?.touched && formLogin.get('correo')?.errors?.['required']"
+              class="alert alert-danger">El correo es requerido
+            </section>
+
+            <section *ngIf="formLogin.get('correo')?.touched && formLogin.get('correo')?.errors?.['email']"
+              class="alert alert-danger">El correo no es valido
+            </section>
+          </div>
+
+          <div class="mb-3">
+            <label for="" class="form-label">Mensaje:</label>
+            <textarea class="form-control" name="" id="" rows="3" formControlName="area"></textarea>
+
+            <section *ngIf="formLogin.get('area')?.touched && formLogin.get('area')?.errors?.['required']"
+              class="alert alert-danger">El texto es requerido
+            </section>
+
+            <section *ngIf="formLogin.get('area')?.touched && formLogin.get('area')?.errors?.['maxlength']"
+              class="alert alert-danger">El texto no debe pasar de 100 caracteres
+            </section>
+          </div>
+
+          <button type="submit" class="btn btn-primary" (click)="verificar()">Enviar</button>
+          <p *ngIf="valido">Todos los datos son válidos</p>
+        </form>
+      </div>
+    </section>
+  </section>
+</section>
